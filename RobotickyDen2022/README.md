@@ -1,4 +1,5 @@
 # BulldozerPhone
+Kategorie: Ketchup House
 BulldozerPhone je robot postavený převážně z Merkuru a Totemu. Mým cílem je zkusit si programovat mobilní aplikaci a využít mobilní senzory. Na mobilu poběží plně autonomní program, proto je zde odkaz na git: 
 https://github.com/PNmJunior/RB2022-TymRECYLKON-KetH-BulldozerPhone.git 
 Načerpané zkušenosti mám v plánu použít v dalších projektech.

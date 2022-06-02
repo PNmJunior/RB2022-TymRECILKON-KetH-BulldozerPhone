@@ -1,5 +1,9 @@
 # Fotodokumentace
+# Nový vzhled
 
+<img src = "Vzhled1_6.jpg">
+
+# Puvodní vzhled
 ## Robot
 <img src = "CelyRobot.jpg">
 

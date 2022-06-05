@@ -1,10 +1,14 @@
 
 #include <Arduino.h>
+#include <Servo.h>
+
+Servo myServo;
+#define pinServo 12
 
 #define pinMotorLevyA 8
 #define pinMotorLevyB 9
-#define pinMotorPravyA 10
-#define pinMotorPravyB 11
+#define pinMotorPravyA 2
+#define pinMotorPravyB 3
 
 #define pinCaraKolo0 PA0
 
@@ -19,8 +23,9 @@
 #define smVzad -1
 
 
-void Ridic(int smer = 0,byte levy = 0, byte pravy = 0)
+void Ridic(int smer = 0,byte levy = 0, byte pravy = 0, int cas = -1)
 {
+  Serial.print("Ridic");Serial.print(smer);Serial.print(",");Serial.print(levy);Serial.print(",");Serial.print(pravy);
   if (smer == smVpred)
   {
     analogWrite(pinMotorLevyA,levy);
@@ -42,6 +47,11 @@ void Ridic(int smer = 0,byte levy = 0, byte pravy = 0)
     analogWrite(pinMotorPravyA,0 );
     analogWrite(pinMotorPravyB, 0);
   }
+  if (cas > 0)
+  {
+    delay(cas);
+  }
+  
   
 }
 
@@ -60,17 +70,20 @@ void setup() {
   pinMode(pEcho1, INPUT);
     pinMode(pTrig2, OUTPUT);
   pinMode(pEcho2, INPUT);
+  myServo.attach(pinServo);
 Serial.println("A");
-
+#define SerMax  170
+#define SerMin 0
+myServo.write(SerMax);
   digitalWrite(pinMotorLevyA,LOW);
   digitalWrite(pinMotorLevyB,LOW);
   digitalWrite(pinMotorPravyA, LOW);
   digitalWrite(pinMotorPravyB,LOW);
   digitalWrite(13,HIGH);
-  delay(1000);
 Serial.println("B");
 digitalWrite(13,LOW);
 Serial.println("C");
+
 
   
 }
@@ -110,64 +123,101 @@ long cas = 0;
 long CasB = 0;
 long casC = 0;
 
+
+int Smer = 0;
+int LevyMot = 0;
+int PravyMot = 0;
+int CekatMotor = -1;
+int Index = 0;
+
+
+void MMM(int index,long zacatek,int smer = 0, int leviMot = 0, int pravyMot =0)
+{
+  Serial.print(Index);Serial.print("<");Serial.print(index);Serial.print(",");Serial.print(zacatek);Serial.print("<=");Serial.print(cas);Serial.print(",");Serial.print(smer);Serial.print(",");Serial.println(leviMot);
+  if(zacatek <= cas && Index < index)
+  {
+    Serial.println("AA");
+    Ridic(smer,leviMot,pravyMot);
+    Smer = smer;
+    LevyMot = leviMot;
+    PravyMot = pravyMot;
+    Index = index;
+  }
+  else
+  {
+    Serial.println("BB");
+  }
+}
+
+
+void MMMS(int index,long zacatek,int uhel = 0)
+{
+  Serial.print(Index);Serial.print("<");Serial.print(index);Serial.print(",");Serial.print(zacatek);Serial.print("<=");Serial.print(cas);Serial.print(",");Serial.print(uhel);
+  if(zacatek <= cas && Index < index)
+  {
+    Serial.println("AA");
+      for (int i = SerMax; i >= 0; i-= 10)
+{
+    myServo.write(i);
+    delay(200);
+    
+
+}
+    Index = index;
+  }
+  else
+  {
+    Serial.println("BB");
+  }
+}
+
+void MMM2()
+{
+Ridic(Smer,LevyMot,PravyMot);
+}
+
+long casMinus = 0;
+long casMetrix = 0;
+long CasMet(int addtime)
+{
+  casMetrix += addtime;
+  return casMetrix;
+}
+
+
 void loop() {
   //Serial.print("S:");
-  cas = millis() /1000;
+  cas = (millis() - casMinus);
   //Serial.println(cas);
+int ab = 0;
+MMM(++ab,CasMet(3000),1,200,200);
 
-if(cas ==3)
-{
-  Serial.println("3");
-  digitalWrite(pinMotorLevyA,LOW);
-  digitalWrite(pinMotorLevyB,HIGH);
-  digitalWrite(pinMotorPravyA, LOW);
-  digitalWrite(pinMotorPravyB,HIGH);
-}
+MMM(++ab,CasMet(3000));
+MMM(++ab,CasMet(1000),1,0,200);
+MMM(++ab,CasMet(2000));//cas zatacky
+MMM(++ab,CasMet(1000),1,200,200);
+MMM(++ab,CasMet(3000));
+MMMS(++ab,CasMet(1000),180);
 
-if(cas ==6)
-{
-  Serial.println("6");
-  digitalWrite(pinMotorLevyA,LOW);
-  digitalWrite(pinMotorLevyB,HIGH);
-  digitalWrite(pinMotorPravyA, LOW);
-  digitalWrite(pinMotorPravyB,LOW);
-  delay(1000);
-    digitalWrite(pinMotorLevyA,LOW);
-  digitalWrite(pinMotorLevyB,LOW);
-  digitalWrite(pinMotorPravyA, LOW);
-  digitalWrite(pinMotorPravyB,LOW);
-  Serial.println("6e");
-}
-
-
-if (cas ==10)
-{
-  Serial.println("10");
-    digitalWrite(pinMotorLevyA,LOW);
-  digitalWrite(pinMotorLevyB,HIGH);
-  digitalWrite(pinMotorPravyA, LOW);
-  digitalWrite(pinMotorPravyB,HIGH);
-}
-
-if (cas ==13)
-{
-  Serial.println("13");
-    digitalWrite(pinMotorLevyA,LOW);
-  digitalWrite(pinMotorLevyB,LOW);
-  digitalWrite(pinMotorPravyA, LOW);
-  digitalWrite(pinMotorPravyB,LOW);
-}
+MMM(++ab,CasMet(5000),-1,200,200);
+MMM(++ab,CasMet(1000));
 
 while (ult(pTrig1, pEcho1) || ult(pTrig2, pEcho2))
 {
+  long a= millis() + 1000;
+  Ridic();
+  casMinus += 1000;
   Serial.println("U");
-  digitalWrite(pinMotorLevyA,LOW);
-  digitalWrite(pinMotorLevyB,LOW);
-  digitalWrite(pinMotorPravyA, LOW);
-  digitalWrite(pinMotorPravyB,LOW);
-  delay(1000);
+  
+  while (millis()< a)
+  {
+    delay(1);
+  }
+  
 }
-
+MMM2();
+casMetrix = 0;
+ab =0;
 
 
 }

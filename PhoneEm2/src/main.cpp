@@ -137,7 +137,8 @@ void MMM(int index,long zacatek,int smer = 0, int leviMot = 0, int pravyMot =0)
   if(zacatek <= cas && Index < index)
   {
     Serial.println("AA");
-    Ridic(smer,leviMot,pravyMot);
+    float i = 2*(float)leviMot;
+    Ridic(smer,i,pravyMot);
     Smer = smer;
     LevyMot = leviMot;
     PravyMot = pravyMot;
@@ -190,17 +191,18 @@ void loop() {
   cas = (millis() - casMinus);
   //Serial.println(cas);
 int ab = 0;
-MMM(++ab,CasMet(3000),1,200,200);
+int rych = 100;
+MMM(++ab,CasMet(3000),1,rych,rych);
 
-MMM(++ab,CasMet(3000));
-MMM(++ab,CasMet(1000),1,0,200);
-MMM(++ab,CasMet(2000));//cas zatacky
-MMM(++ab,CasMet(1000),1,200,200);
-MMM(++ab,CasMet(3000));
+MMM(++ab,CasMet(4000));
+MMM(++ab,CasMet(1000),1,200,0);
+MMM(++ab,CasMet(1250));//cas zatacky
+MMM(++ab,CasMet(1000),1,rych,rych);
+MMM(++ab,CasMet(4300));
 MMMS(++ab,CasMet(1000),180);
 
-MMM(++ab,CasMet(5000),-1,200,200);
-MMM(++ab,CasMet(1000));
+MMM(++ab,CasMet(5000),-1, rych,rych);
+MMM(++ab,CasMet(2000));
 
 while (ult(pTrig1, pEcho1) || ult(pTrig2, pEcho2))
 {
@@ -218,8 +220,10 @@ while (ult(pTrig1, pEcho1) || ult(pTrig2, pEcho2))
 MMM2();
 casMetrix = 0;
 ab =0;
-
-
+/*
+Serial.println(analogRead(A0));
+Serial.println(analogRead(A1));
+delay(5000);*/
 }
 
 

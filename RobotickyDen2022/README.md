@@ -1,12 +1,14 @@
 # Závěr Ročníku 2022
-Robot nebýl dostatečně připraven. Pro zprovoznění rezervního plánu bylo málo času. Kámen urazu bylo vyhoření motoru. Předtím se mi málem podařilo umýstit 3 a potom 2 plechovky svojí čaru při dvou soubojích.
+Robot nebyl dostatečně připraven. Pro zprovoznění rezervního plánu bylo málo času. Kámen úrazu bylo vyhoření motoru. Předtím se mi málem podařilo umístit 3 a potom 2 plechovky na svojí čáru při dvou soubojích.
 
 # Cíl na další rok
-Uskutečnit nápad s rozpoznávaním obrazu.
+Uskutečnit nápad s rozpoznáváním obrazu. 
+Komunikace mezi STM a Mobilním zařízením přes USB.
 
-# Fotky soutěřního robota
-
-
+# Fotky soutěžního robota
+<img src = "5_6_2022ZBoku.jpg">
+<img src = "5_6_2022ZePredu.jpg">
+<img src = "5_6_2022ZeSpodu.jpg">
 
 # BulldozerPhone
 Kategorie: Ketchup House

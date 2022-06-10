@@ -1,7 +1,8 @@
 # Fotodokumentace
-# Nový vzhled
-
-<img src = "Vzhled1_6.jpg">
+# Soutěžní vzhled
+<img src = "5_6_2022ZBoku.jpg">
+<img src = "5_6_2022ZePredu.jpg">
+<img src = "5_6_2022ZeSpodu.jpg">
 
 # Puvodní vzhled
 ## Robot
@@ -10,6 +11,7 @@
 ## Podvozek
 
 <img src = "Podvozek.jpg">
+
 ## Pohledy z kamery
 
 <img src = "PohledZKamery.jpg">

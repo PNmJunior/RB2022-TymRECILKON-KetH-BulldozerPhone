@@ -1,1 +1,1 @@
-# RB2022-TymRECILKON-KetH-BulldozerPhone
+# BulldozerPhone2022 - Robotický den 2022 - Tym RECYKLON - Ketchup House

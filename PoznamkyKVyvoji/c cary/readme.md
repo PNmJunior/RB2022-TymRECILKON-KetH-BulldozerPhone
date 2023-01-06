@@ -1,0 +1,1 @@
+https://camera-sdk.com/p_6753-how-to-accomplish-line-detection-in-c-sharp.html
